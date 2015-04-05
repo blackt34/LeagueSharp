@@ -120,7 +120,7 @@ namespace LightningLux
 			
 			Game.PrintChat("Lightning Lux loaded!");
 
-			Game.OnGameUpdate += Game_OnGameUpdate;
+			Game.OnUpdate += Game_OnGameUpdate;
 			xSLxOrbwalker.BeforeAttack += Orbwalking_BeforeAttack;
 //			Orbwalking.BeforeAttack += Orbwalking_BeforeAttack;
 			Drawing.OnDraw += Drawing_OnDraw;
