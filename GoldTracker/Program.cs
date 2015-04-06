@@ -77,7 +77,7 @@ namespace GoldTracker
 
             teamText.Add();
 
-            Game.OnGameUpdate += Game_OnGameUpdate;
+            Game.OnUpdate += Game_OnGameUpdate;
         }
 
         static void Game_OnGameUpdate(EventArgs args)
