@@ -1,0 +1,17 @@
+c:\users\andy\documents\visual studio 2013\Projects\vWardjumper\vWardjumper\bin\x86\Debug\vWardjumper.exe.config
+c:\users\andy\documents\visual studio 2013\Projects\vWardjumper\vWardjumper\bin\x86\Debug\vWardjumper.exe
+c:\users\andy\documents\visual studio 2013\Projects\vWardjumper\vWardjumper\bin\x86\Debug\vWardjumper.pdb
+c:\users\andy\documents\visual studio 2013\Projects\vWardjumper\vWardjumper\bin\x86\Debug\LeagueSharp.Common.dll
+c:\users\andy\documents\visual studio 2013\Projects\vWardjumper\vWardjumper\bin\x86\Debug\LeagueSharp.dll
+c:\users\andy\documents\visual studio 2013\Projects\vWardjumper\vWardjumper\bin\x86\Debug\SharpDX.Direct3D9.dll
+c:\users\andy\documents\visual studio 2013\Projects\vWardjumper\vWardjumper\bin\x86\Debug\SharpDX.dll
+c:\users\andy\documents\visual studio 2013\Projects\vWardjumper\vWardjumper\bin\x86\Debug\LeagueSharp.xml
+c:\users\andy\documents\visual studio 2013\Projects\vWardjumper\vWardjumper\obj\x86\Debug\vWardjumper.exe
+c:\users\andy\documents\visual studio 2013\Projects\vWardjumper\vWardjumper\obj\x86\Debug\vWardjumper.pdb
+C:\Users\Andy\Documents\Visual Studio 2013\Projects\vWardjumper\vWardjumper\bin\x86\Debug\SharpDX.Toolkit.dll
+C:\Users\Andy\Documents\Visual Studio 2013\Projects\vWardjumper\vWardjumper\bin\x86\Debug\SharpDX.Toolkit.Graphics.dll
+C:\Users\Andy\Documents\Visual Studio 2013\Projects\vWardjumper\vWardjumper\bin\x86\Debug\SharpDX.Toolkit.xml
+C:\Users\Andy\Documents\Visual Studio 2013\Projects\vWardjumper\vWardjumper\bin\x86\Debug\SharpDX.Toolkit.Graphics.xml
+C:\Users\Andy\Desktop\LeagueSharp\vWardjumper\vWardjumper\bin\x86\Debug\vWardjumper.exe.config
+C:\Users\Andy\Desktop\LeagueSharp\vWardjumper\vWardjumper\obj\x86\Debug\vWardjumper.exe
+C:\Users\Andy\Desktop\LeagueSharp\vWardjumper\vWardjumper\obj\x86\Debug\vWardjumper.pdb
