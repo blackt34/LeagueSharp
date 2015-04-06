@@ -117,7 +117,7 @@ namespace FuckingAwesomeDraven
             GameObject.OnDelete += AxeCatcher.OnDelete;
             Obj_AI_Hero.OnProcessSpellCast += AxeCatcher.Obj_AI_Hero_OnProcessSpellCast;
             Drawing.OnDraw += eventArgs => AxeCatcher.Draw();
-            Game.OnGameUpdate += Game_OnGameUpdate;
+            Game.OnUpdate += Game_OnGameUpdate;
             Game.OnWndProc += AxeCatcher.GameOnOnWndProc;
         }
 
