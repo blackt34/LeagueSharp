@@ -15,7 +15,7 @@ namespace Anti_AFK
         private static Spell Q, W, E, R;
         static void Main(string[] args)
         {
-            CustomEvents.Game.OnLoad += Game_OnGameLoad;
+            CustomEvents.Game.OnGameLoad += Game_OnGameLoad;
         }
 
         static void Game_OnGameLoad(EventArgs args)
@@ -28,7 +28,7 @@ namespace Anti_AFK
             Config.AddItem(new MenuItem("afk", "Enabled").SetValue(new KeyBind("T".ToCharArray()[0], KeyBindType.Toggle)));
             Config.AddToMainMenu();
             Game.PrintChat("<font color='#00ff00'>["+Utils.FormatTime(Game.ClockTime)+"] Barack Obama:</font> Got me to challenger in one day Kappa");
-            Game.OnGameUpdate += Game_OnGameUpdate;
+            Game.OnUpdate += Game_OnGameUpdate;
         }
         private static int one;
         private static int two;
