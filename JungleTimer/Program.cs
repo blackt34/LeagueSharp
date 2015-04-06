@@ -210,7 +210,7 @@ namespace JungleTimer
 					DrawText pos = new DrawText(camp);
 					_DrawText.Add(pos);
 				}
-				Game.OnGameUpdate += Game_OnGameUpdate;
+				Game.OnUpdate += Game_OnGameUpdate;
 				Drawing.OnEndScene += Drawing_OnEndScene;
 				Game.PrintChat("JungleTimer loaded!");
 			}
