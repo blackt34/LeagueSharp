@@ -15,7 +15,7 @@ namespace Anti_AFK
         private static Spell Q, W, E, R;
         static void Main(string[] args)
         {
-            CustomEvents.Game.OnGameLoad += Game_OnGameLoad;
+            CustomEvents.Game.OnLoad += Game_OnGameLoad;
         }
 
         static void Game_OnGameLoad(EventArgs args)
