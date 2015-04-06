@@ -36,7 +36,7 @@ namespace SmiteOP
              CreateMenu();
              InitializeItems();
 
-             Game.OnUpdate += Game_OnGameUpdate;
+             Game.OnGameUpdate += Game_OnGameUpdate;
              Drawing.OnDraw += Drawing_OnDraw;
       
         }

@@ -1,0 +1,15 @@
+C:\Users\Thoki\Documents\Visual Studio 2013\Projects\SmiteOP\SmiteOP\bin\Release\SmiteOP.exe.config
+C:\Users\Thoki\Documents\Visual Studio 2013\Projects\SmiteOP\SmiteOP\bin\Release\SmiteOP.exe
+C:\Users\Thoki\Documents\Visual Studio 2013\Projects\SmiteOP\SmiteOP\bin\Release\SmiteOP.pdb
+C:\Users\Thoki\Documents\Visual Studio 2013\Projects\SmiteOP\SmiteOP\bin\Release\LeagueSharp.Common.dll
+C:\Users\Thoki\Documents\Visual Studio 2013\Projects\SmiteOP\SmiteOP\bin\Release\LeagueSharp.dll
+C:\Users\Thoki\Documents\Visual Studio 2013\Projects\SmiteOP\SmiteOP\bin\Release\SharpDX.dll
+C:\Users\Thoki\Documents\Visual Studio 2013\Projects\SmiteOP\SmiteOP\bin\Release\SharpDX.Direct3D9.dll
+C:\Users\Thoki\Documents\Visual Studio 2013\Projects\SmiteOP\SmiteOP\bin\Release\SharpDX.Toolkit.dll
+C:\Users\Thoki\Documents\Visual Studio 2013\Projects\SmiteOP\SmiteOP\bin\Release\SharpDX.Toolkit.Graphics.dll
+C:\Users\Thoki\Documents\Visual Studio 2013\Projects\SmiteOP\SmiteOP\bin\Release\LeagueSharp.xml
+C:\Users\Thoki\Documents\Visual Studio 2013\Projects\SmiteOP\SmiteOP\bin\Release\SharpDX.Toolkit.xml
+C:\Users\Thoki\Documents\Visual Studio 2013\Projects\SmiteOP\SmiteOP\bin\Release\SharpDX.Toolkit.Graphics.xml
+C:\Users\Thoki\Documents\Visual Studio 2013\Projects\SmiteOP\SmiteOP\obj\Debug\SmiteOP.csprojResolveAssemblyReference.cache
+C:\Users\Thoki\Documents\Visual Studio 2013\Projects\SmiteOP\SmiteOP\obj\Debug\SmiteOP.exe
+C:\Users\Thoki\Documents\Visual Studio 2013\Projects\SmiteOP\SmiteOP\obj\Debug\SmiteOP.pdb
