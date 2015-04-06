@@ -31,7 +31,7 @@ namespace vWardjumper
 
             Jmpspell = GetJumpSpell();
             GameObject.OnCreate += GameObject_OnCreate;
-            Game.OnGameUpdate += Game_OnGameUpdate;
+            Game.OnUpdate += Game_OnGameUpdate;
             Game.PrintChat(">> WardJumper loaded <<");
         }
 
