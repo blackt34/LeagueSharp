@@ -48,7 +48,7 @@ namespace SmiteOP
 
             if (Menu.Item("draw").GetValue<Circle>().Active)
             {
-                Utility.DrawCircle(Player.ServerPosition, range, Menu.Item("draw").GetValue<Circle>().Color);
+                Render.Circle.DrawCircle(Player.ServerPosition, range, Menu.Item("draw").GetValue<Circle>().Color);
             }
             else
                 return;
