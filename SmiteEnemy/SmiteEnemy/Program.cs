@@ -15,11 +15,11 @@ namespace SmiteEnemy
     {
         private static Obj_AI_Hero Player;
         private static Spell SmiteSlot;
-        private static List<Items.Item> itemsList = new List<Items.Item>();
+
         private static string WelcMsg = ("<font color = '#FFFF00'>SmiteEnemy</font> <font color = '#008000'>LOADED!</font> <font color = '#FFFFFF'>rewirte from SmiteOP by blackt34.</font>");
         public static SpellSlot smiteSlot = SpellSlot.Unknown;
         private static Menu Menu;
-        private static Items.Item s0, s1, s2, s3, s4;
+
         private static float range = 570f;
 
         private static void Main(string[] args)
@@ -31,13 +31,10 @@ namespace SmiteEnemy
         {
             Player = ObjectManager.Player;
             Game.PrintChat(WelcMsg);
-
             CreateMenu();
-            InitializeItems();
-
+            
             Game.OnUpdate += Game_OnGameUpdate;
             Drawing.OnDraw += Drawing_OnDraw;
-
         }
 
         private static void Drawing_OnDraw(EventArgs args)
@@ -57,11 +54,6 @@ namespace SmiteEnemy
         {
             if (!Menu.Item("enable").GetValue<KeyBind>().Active)
                 return;
-            if (Player.IsDead)
-                return;
-            if (!CheckInv())
-                return;
-
             setSmiteSlot();
 
             var enemys = ObjectManager.Get<Obj_AI_Hero>().Where(f => !f.IsAlly && !f.IsDead && Player.Distance(f, false) <= range);
@@ -72,9 +64,9 @@ namespace SmiteEnemy
             foreach (var enemy in enemys)
             {
                 //if (enemy.Health <= dmg)
-                if (enemy.Health > 0)
+                if (SmiteSlot.IsReady() && enemy.Health > 0)
                 {
-                    //Game.PrintChat("My Big Smite!");
+                    //Game.PrintChat("Feel My Smite!");
                     SmiteSlot.Slot = smiteSlot;
                     Player.Spellbook.CastSpell(smiteSlot, enemy);
                 }
@@ -101,36 +93,10 @@ namespace SmiteEnemy
             Menu.AddToMainMenu();
         }
 
-        private static bool CheckInv()
-        {
-            bool b = false;
-            foreach (var item in itemsList)
-            {
-                if (Player.InventoryItems.Any(f => f.Id == (ItemId)item.Id))
-                {
-                    b = true;
-                }
-            }
-            return b;
-        }
-        private static void InitializeItems()
-        {
-            s0 = new Items.Item(3710, range);
-            itemsList.Add(s0);
-            s1 = new Items.Item(3709, range);
-            itemsList.Add(s1);
-            s2 = new Items.Item(3708, range);
-            itemsList.Add(s2);
-            s3 = new Items.Item(3707, range);
-            itemsList.Add(s3);
-            s4 = new Items.Item(3706, range);
-            itemsList.Add(s4);
-        }
         private static float Damage()
         {
             int lvl = Player.Level;
             int damage = (20 + 8 * lvl);
-
             return damage;
         }
     }
