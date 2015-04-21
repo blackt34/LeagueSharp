@@ -52,7 +52,7 @@ namespace Teemo___The_Satan_Yordle
             ItemHandler.ItemHandlerLoad();
 
             Drawing.OnDraw += Drawing_OnDraw;
-            Game.OnGameUpdate += Game_OnGameUpdate;
+            Game.OnUpdate += Game_OnGameUpdate;
             AntiGapcloser.OnEnemyGapcloser += AntiGapcloser_OnEnemyGapcloser;
             Orbwalking.AfterAttack += Orbwalking_AfterAttack;
 
@@ -79,9 +79,9 @@ namespace Teemo___The_Satan_Yordle
             var drawr = Menu.Item("DrawR").GetValue<Circle>();
 
             if (drawq.Active)
-                Utility.DrawCircle(Player.Position, Q.Range, drawq.Color);
+                Render.Circle.DrawCircle(Player.Position, Q.Range, drawq.Color);
             if (drawr.Active)
-                Utility.DrawCircle(Player.Position, R.Range, drawr.Color);
+                Render.Circle.DrawCircle(Player.Position, R.Range, drawr.Color);
 
         } // Drawing End
 
