@@ -31,7 +31,7 @@ namespace RektSai
 
         public static bool IsLowHealth(this Obj_AI_Base target)
         {
-            return target.HealthPercentage() < 10;
+            return target.HealthPercent < 10;
         }
 
         public static bool HasQActive(this Obj_AI_Hero target)
