@@ -63,7 +63,7 @@ namespace SmiteEnemy
 
             var target = TargetSelector.GetTarget(1700, TargetSelector.DamageType.Magical);
             //Game.PrintChat(target.ChampionName);
-            if (target.IsValidTarget(SmiteSlot.Range) && SmiteSlot.CanCast(target))
+            if (target.IsValidTarget(range) && SmiteSlot.CanCast(target))
             {
                 SmiteSlot.Slot = smiteSlot;
                 Player.Spellbook.CastSpell(smiteSlot, target);
