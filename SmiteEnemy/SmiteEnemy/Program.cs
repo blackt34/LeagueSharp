@@ -26,15 +26,49 @@ namespace SmiteEnemy
         {
             CustomEvents.Game.OnGameLoad += Game_OnGameLoad;
         }
-
+        
         private static void Game_OnGameLoad(EventArgs args)
         {
             Player = ObjectManager.Player;
+
+            //Verify Smite
+            if (Player.GetSpellSlot("summonersmite") < 0 && Player.GetSpellSlot("s5_summonersmiteplayerganker") < 0 )
+                return;
+                                   
             Game.PrintChat(WelcMsg);
             CreateMenu();
-            
+           
             Game.OnUpdate += Game_OnGameUpdate;
             Drawing.OnDraw += Drawing_OnDraw;
+        }
+
+        private static void CreateMenu()
+        {
+            Menu = new Menu("SmiteEmemy", "SmiteEmemy", true);
+            //Menu.AddItem(new MenuItem("enable", "Enable").SetValue(true));
+            Menu.AddItem(new MenuItem("enable", "Enable").SetValue(new KeyBind("Y".ToCharArray()[0], KeyBindType.Toggle, true)));
+            Menu.AddToMainMenu();
+
+            //Targetsleector
+            var targetSelectorMenu = new Menu("Target Selector", "Target Selector");
+            TargetSelector.AddToMenu(targetSelectorMenu);
+            Menu.AddSubMenu(targetSelectorMenu);
+        }
+
+        private static void Game_OnGameUpdate(EventArgs args)
+        {
+            if (!Menu.Item("enable").GetValue<KeyBind>().Active)
+                return;
+            setSmiteSlot();
+
+            var target = TargetSelector.GetTarget(1700, TargetSelector.DamageType.Magical);
+            //Game.PrintChat(target.ChampionName);
+            if (target.IsValidTarget(SmiteSlot.Range) && SmiteSlot.CanCast(target))
+            {
+                SmiteSlot.Slot = smiteSlot;
+                Player.Spellbook.CastSpell(smiteSlot, target);
+                //Game.PrintChat("<font color = '#FFFF00'>Do Smite!</font>");
+            }
         }
 
         private static void Drawing_OnDraw(EventArgs args)
@@ -50,54 +84,15 @@ namespace SmiteEnemy
                 return;
         }
 
-        private static void Game_OnGameUpdate(EventArgs args)
-        {
-            if (!Menu.Item("enable").GetValue<KeyBind>().Active)
-                return;
-            setSmiteSlot();
-
-            var enemys = ObjectManager.Get<Obj_AI_Hero>().Where(f => !f.IsAlly && !f.IsDead && Player.Distance(f, false) <= range);
-            if (enemys == null)
-                return;
-
-            float dmg = Damage();
-            foreach (var enemy in enemys)
-            {
-                //if (enemy.Health <= dmg)
-                if (SmiteSlot.IsReady() && enemy.Health > 0)
-                {
-                    //Game.PrintChat("Feel My Smite!");
-                    SmiteSlot.Slot = smiteSlot;
-                    Player.Spellbook.CastSpell(smiteSlot, enemy);
-                }
-
-            }
-
-        }
-
         public static void setSmiteSlot()
         {
             foreach (var spell in ObjectManager.Player.Spellbook.Spells.Where(spell => String.Equals(spell.Name, "s5_summonersmiteplayerganker", StringComparison.CurrentCultureIgnoreCase)))
             {
                 smiteSlot = spell.Slot;
                 SmiteSlot = new Spell(smiteSlot, range);
+                //Game.PrintChat("Ready to Smite!");
                 return;
             }
-        }
-
-        private static void CreateMenu()
-        {
-            Menu = new Menu("SmiteEmemy", "menu", true);
-            //Menu.AddItem(new MenuItem("enable", "Enable").SetValue(true));
-            Menu.AddItem(new MenuItem("enable", "Enable").SetValue(new KeyBind("Y".ToCharArray()[0], KeyBindType.Toggle, true)));
-            Menu.AddToMainMenu();
-        }
-
-        private static float Damage()
-        {
-            int lvl = Player.Level;
-            int damage = (20 + 8 * lvl);
-            return damage;
         }
     }
 }
