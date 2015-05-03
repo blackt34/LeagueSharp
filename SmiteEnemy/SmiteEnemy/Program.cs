@@ -62,7 +62,10 @@ namespace SmiteEnemy
             setSmiteSlot();
 
             var target = TargetSelector.GetTarget(1700, TargetSelector.DamageType.Magical);
-            //Game.PrintChat(target.ChampionName);
+            if(target.IsEnemy)
+			{
+				Render.Circle.DrawCircle(target.Position, 50f, System.Drawing.Color.Red);
+			}
             if (target.IsValidTarget(range) && SmiteSlot.CanCast(target))
             {
                 SmiteSlot.Slot = smiteSlot;
