@@ -77,7 +77,8 @@ namespace BadaoRiven
             Misc.AddItem(new MenuItem("W interrupt", "W interrupt").SetValue(true));
             Misc.AddItem(new MenuItem("W gapcloser", "W gapcloser").SetValue(true));
             Menu Draw = Menu.AddSubMenu(new Menu("Draw", "Draw"));
-            Draw.AddItem(new MenuItem("Draw dmg text", "Draw dmg text").SetValue(true));
+            Draw.AddItem(new MenuItem("Draw dmg text", "Draw dmg text").SetValue(false));
+			Draw.AddItem(new MenuItem("DrawTargetCircle", "Draw Target Circle").SetValue(false));
             Menu other = Menu.AddSubMenu(new Menu("other", "other"));
             other.AddItem(new MenuItem("Flee", "Flee").SetValue(new KeyBind("Z".ToCharArray()[0], KeyBindType.Press)));
             other.AddItem(new MenuItem("WallJumpHelper", "WallJumpHelper").SetValue(new KeyBind("A".ToCharArray()[0], KeyBindType.Press)));
@@ -144,11 +145,15 @@ namespace BadaoRiven
         }
         public static void OnDraw(EventArgs args)
         {
-            if (Player.IsDead) return;
-            var target = TargetSelector.GetSelectedTarget();
-            if (target != null && target.IsValidTarget() && !target.IsZombie)
-                Render.Circle.DrawCircle(target.Position, 150, Color.AliceBlue, 15);
-            if (Menu.Item("Draw dmg text").GetValue<bool>())
+			if (Player.IsDead) return;
+			if (Menu.Item("DrawTargetCircle").GetValue<bool>())
+			{
+				var target = TargetSelector.GetSelectedTarget();
+				if (target != null && target.IsValidTarget() && !target.IsZombie)
+					Render.Circle.DrawCircle(target.Position, 150, Color.AliceBlue, 15);
+            }
+			if (Menu.Item("Draw dmg text").GetValue<bool>())
+			{
                 foreach (var hero in HeroManager.Enemies)
                 {
                     if (hero.IsValidTarget(1500))
@@ -160,6 +165,7 @@ namespace BadaoRiven
                         Drawing.DrawText(x[0], x[1], mau, dmg1.ToString() + " %");
                     }
                 }
+			}
         }
         public static void AfterAttack(AttackableUnit unit, AttackableUnit target)
         {
