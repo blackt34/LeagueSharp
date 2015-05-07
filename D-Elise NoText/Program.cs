@@ -251,6 +251,7 @@ namespace D_Elise
 
             //Drawings
             _config.AddSubMenu(new Menu("Drawings", "Drawings"));
+			_config.SubMenu("Drawings").AddItem(new MenuItem("DrawText", "Draw Text").SetValue(true));
             _config.SubMenu("Drawings").AddItem(new MenuItem("DrawQ", "Human Q")).SetValue(true);
             _config.SubMenu("Drawings").AddItem(new MenuItem("DrawW", "Human W")).SetValue(true);
             _config.SubMenu("Drawings").AddItem(new MenuItem("DrawE", "Human E")).SetValue(true);
@@ -1037,36 +1038,39 @@ namespace D_Elise
                     Drawing.DrawCircle(ObjectManager.Player.Position, _spiderE.Range, System.Drawing.Color.LightGray);
                 }
             }
-            if (!_spider)
-            {
-                if (_spideQcd == 0)
-                    Drawing.DrawText(elise[0] - 60, elise[1], Color.White, "SQ Rdy");
-                else
-                    Drawing.DrawText(elise[0] - 60, elise[1], Color.Orange, "SQ: " + _spideQcd.ToString("0.0"));
-                if (_spideWcd == 0)
-                    Drawing.DrawText(elise[0] - 20, elise[1] + 30, Color.White, "SW Rdy");
-                else
-                    Drawing.DrawText(elise[0] - 20, elise[1] + 30, Color.Orange, "SW: " + _spideWcd.ToString("0.0"));
-                if (_spideEcd == 0)
-                    Drawing.DrawText(elise[0], elise[1], Color.White, "SE Rdy");
-                else
-                    Drawing.DrawText(elise[0], elise[1], Color.Orange, "SE: " + _spideEcd.ToString("0.0"));
-            }
-            else
-            {
-                if (_humaQcd == 0)
-                    Drawing.DrawText(elise[0] - 60, elise[1], Color.White, "HQ Rdy");
-                else
-                    Drawing.DrawText(elise[0] - 60, elise[1], Color.Orange, "HQ: " + _humaQcd.ToString("0.0"));
-                if (_humaWcd == 0)
-                    Drawing.DrawText(elise[0] - 20, elise[1] + 30, Color.White, "HW Rdy");
-                else
-                    Drawing.DrawText(elise[0] - 20, elise[1] + 30, Color.Orange, "HW: " + _humaWcd.ToString("0.0"));
-                if (_humaEcd == 0)
-                    Drawing.DrawText(elise[0], elise[1], Color.White, "HE Rdy");
-                else
-                    Drawing.DrawText(elise[0], elise[1], Color.Orange, "HE: " + _humaEcd.ToString("0.0"));
-            }
+			if (_config.Item("DrawText").GetValue<bool>())
+			{
+				if (!_spider)
+				{
+					if (_spideQcd == 0)
+						Drawing.DrawText(elise[0] - 60, elise[1], Color.White, "SQ Rdy");
+					else
+						Drawing.DrawText(elise[0] - 60, elise[1], Color.Orange, "SQ: " + _spideQcd.ToString("0.0"));
+					if (_spideWcd == 0)
+						Drawing.DrawText(elise[0] - 20, elise[1] + 30, Color.White, "SW Rdy");
+					else
+						Drawing.DrawText(elise[0] - 20, elise[1] + 30, Color.Orange, "SW: " + _spideWcd.ToString("0.0"));
+					if (_spideEcd == 0)
+						Drawing.DrawText(elise[0], elise[1], Color.White, "SE Rdy");
+					else
+						Drawing.DrawText(elise[0], elise[1], Color.Orange, "SE: " + _spideEcd.ToString("0.0"));
+				}
+				else
+				{
+					if (_humaQcd == 0)
+						Drawing.DrawText(elise[0] - 60, elise[1], Color.White, "HQ Rdy");
+					else
+						Drawing.DrawText(elise[0] - 60, elise[1], Color.Orange, "HQ: " + _humaQcd.ToString("0.0"));
+					if (_humaWcd == 0)
+						Drawing.DrawText(elise[0] - 20, elise[1] + 30, Color.White, "HW Rdy");
+					else
+						Drawing.DrawText(elise[0] - 20, elise[1] + 30, Color.Orange, "HW: " + _humaWcd.ToString("0.0"));
+					if (_humaEcd == 0)
+						Drawing.DrawText(elise[0], elise[1], Color.White, "HE Rdy");
+					else
+						Drawing.DrawText(elise[0], elise[1], Color.Orange, "HE: " + _humaEcd.ToString("0.0"));
+				}
+			}
         }
 
         private static void CheckSpells()
