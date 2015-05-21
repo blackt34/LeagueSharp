@@ -75,39 +75,42 @@ namespace Drake
         {
             if (!enabled.GetValue<Boolean>()) return;
             var selected = (Obj_AI_Base) Hud.SelectedUnit;
-            if (state==State.Waiting&&selected.BaseSkinName == "SRU_Blue"&&HasSlaves(selected))
-            {
-                blue = selected;
-                if (selected.Position.Compare(chaos, 5))
-                {
-                    Utility.DelayAction.Add(5000, () => { state = State.Waiting; });
-                    o = false;
-                    Drawing.OnDraw += Drawing_OnDraw;
-                    Game.OnWndProc += Game_OnWndProc;
-                    state = State.Valid;
-                }
-                else if (selected.Position.Compare(order, 5))
-                {
-                    o = true;
-                    Drawing.OnDraw += Drawing_OnDraw;
-                    Game.OnWndProc += Game_OnWndProc;
-                    state = State.Valid;
-                }
+			if(selected != null)
+			{
+				if (state==State.Waiting && selected.BaseSkinName == "SRU_Blue" && HasSlaves(selected))
+				{
+					blue = selected;
+					if (selected.Position.Compare(chaos, 5))
+					{
+						Utility.DelayAction.Add(5000, () => { state = State.Waiting; });
+						o = false;
+						Drawing.OnDraw += Drawing_OnDraw;
+						Game.OnWndProc += Game_OnWndProc;
+						state = State.Valid;
+					}
+					else if (selected.Position.Compare(order, 5))
+					{
+						o = true;
+						Drawing.OnDraw += Drawing_OnDraw;
+						Game.OnWndProc += Game_OnWndProc;
+						state = State.Valid;
+					}
 
-            }
-            else if ((state == State.Moving2) && Arrived())
-            {
-                Utility.DelayAction.Add(1500, () => { state = State.Waiting; });
-                state = State.Moving3;
-                player.IssueOrder(GameObjectOrder.AttackUnit, blue);
-                Utility.DelayAction.Add((o ? 400 : 750)+ (int)((player.MoveSpeed - 330) * .4), Move);
-            }
-            else if ((state == State.Moving3) && Arrived())
-            {
-                
-                player.IssueOrder(GameObjectOrder.AttackUnit, blue);
-                state = State.Waiting;
-            }
+				}
+				else if ((state == State.Moving2) && Arrived())
+				{
+					Utility.DelayAction.Add(1500, () => { state = State.Waiting; });
+					state = State.Moving3;
+					player.IssueOrder(GameObjectOrder.AttackUnit, blue);
+					Utility.DelayAction.Add((o ? 400 : 750)+ (int)((player.MoveSpeed - 330) * .4), Move);
+				}
+				else if ((state == State.Moving3) && Arrived())
+				{
+					
+					player.IssueOrder(GameObjectOrder.AttackUnit, blue);
+					state = State.Waiting;
+				}
+			}
         }
         static bool HasSlaves(Obj_AI_Base golem)
         {
