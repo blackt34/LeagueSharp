@@ -31,11 +31,6 @@ namespace SmiteEnemy
         {
             Player = ObjectManager.Player;
 
-            //Verify Smite
-            if (Player.GetSpellSlot("summonersmite") < 0 && Player.GetSpellSlot("s5_summonersmiteplayerganker") < 0 )
-                return;
-                                   
-            Game.PrintChat(WelcMsg);
             CreateMenu();
            
             Game.OnUpdate += Game_OnGameUpdate;
@@ -45,8 +40,8 @@ namespace SmiteEnemy
         private static void CreateMenu()
         {
             Menu = new Menu("SmiteEmemy", "SmiteEmemy", true);
-            //Menu.AddItem(new MenuItem("enable", "Enable").SetValue(true));
-            Menu.AddItem(new MenuItem("enable", "Enable").SetValue(new KeyBind("Y".ToCharArray()[0], KeyBindType.Toggle, true)));
+            Menu.AddItem(new MenuItem("smite", "Smite!").SetValue(new KeyBind("Y".ToCharArray()[0], KeyBindType.Toggle, true)));
+			Menu.AddItem(new MenuItem("draw", "Draw").SetValue(true));
             Menu.AddToMainMenu();
 
             //Targetsleector
@@ -57,29 +52,32 @@ namespace SmiteEnemy
 
         private static void Game_OnGameUpdate(EventArgs args)
         {
-            if (!Menu.Item("enable").GetValue<KeyBind>().Active)
+            if (!Menu.Item("smite").GetValue<KeyBind>().Active)
                 return;
+			
             setSmiteSlot();
 
             var target = TargetSelector.GetTarget(1700, TargetSelector.DamageType.Magical);
-            if(target.IsEnemy)
+            if (target != null)
 			{
-				Render.Circle.DrawCircle(target.Position, 50f, System.Drawing.Color.Red);
+				if (Menu.Item("draw").GetValue<bool>())
+				{
+					Drawing.DrawCircle(target.Position, 50f, System.Drawing.Color.Red);
+				}
+				
+				if (target.IsValidTarget(range) && SmiteSlot.CanCast(target))
+				{
+					SmiteSlot.Slot = smiteSlot;
+					Player.Spellbook.CastSpell(smiteSlot, target);
+				}
+				else
+					return;
 			}
-            if (target.IsValidTarget(range) && SmiteSlot.CanCast(target))
-            {
-                SmiteSlot.Slot = smiteSlot;
-                Player.Spellbook.CastSpell(smiteSlot, target);
-                //Game.PrintChat("<font color = '#FFFF00'>Do Smite!</font>");
-            }
         }
 
         private static void Drawing_OnDraw(EventArgs args)
         {
-            if (!Menu.Item("enable").GetValue<KeyBind>().Active)
-                return;
-
-            if (Menu.Item("enable").GetValue<KeyBind>().Active)
+            if (Menu.Item("smite").GetValue<KeyBind>().Active && Menu.Item("draw").GetValue<bool>())
             {
                 Drawing.DrawCircle(Player.ServerPosition, range, System.Drawing.Color.Blue);
             }
@@ -93,7 +91,12 @@ namespace SmiteEnemy
             {
                 smiteSlot = spell.Slot;
                 SmiteSlot = new Spell(smiteSlot, range);
-                //Game.PrintChat("Ready to Smite!");
+                return;
+            }
+			foreach (var spell in ObjectManager.Player.Spellbook.Spells.Where(spell => String.Equals(spell.Name, "s5_summonersmiteduel", StringComparison.CurrentCultureIgnoreCase)))
+            {
+                smiteSlot = spell.Slot;
+                SmiteSlot = new Spell(smiteSlot, range);
                 return;
             }
         }
