@@ -13,7 +13,8 @@ namespace SmiteEnemy
 {
     internal class Program
     {
-        private static Obj_AI_Hero Player;
+        public static Orbwalking.Orbwalker Orbwalker;
+		private static Obj_AI_Hero Player;
         private static Spell SmiteSlot;
 
         private static string WelcMsg = ("<font color = '#FFFF00'>SmiteEnemy</font> <font color = '#008000'>LOADED!</font> <font color = '#FFFFFF'>rewirte from SmiteOP by blackt34.</font>");
@@ -41,6 +42,7 @@ namespace SmiteEnemy
         {
             Menu = new Menu("SmiteEmemy", "SmiteEmemy", true);
             Menu.AddItem(new MenuItem("smite", "Smite!").SetValue(new KeyBind("Y".ToCharArray()[0], KeyBindType.Toggle, true)));
+			Menu.AddItem(new MenuItem("onlySmiteInCombo", "Only Simte in Combo").SetValue(false));
 			Menu.AddItem(new MenuItem("draw", "Draw").SetValue(true));
             Menu.AddToMainMenu();
 
@@ -48,6 +50,10 @@ namespace SmiteEnemy
             var targetSelectorMenu = new Menu("Target Selector", "Target Selector");
             TargetSelector.AddToMenu(targetSelectorMenu);
             Menu.AddSubMenu(targetSelectorMenu);
+			
+			//Orbwalking
+            Menu.AddSubMenu(new Menu("Orbwalking", "Orbwalking"));
+            Orbwalker = new Orbwalking.Orbwalker(Menu.SubMenu("Orbwalking"));
         }
 
         private static void Game_OnGameUpdate(EventArgs args)
@@ -57,18 +63,24 @@ namespace SmiteEnemy
 			
             setSmiteSlot();
 
-            var target = TargetSelector.GetTarget(1700, TargetSelector.DamageType.Magical);
+            var target = TargetSelector.GetTarget(2500, TargetSelector.DamageType.Magical);
             if (target != null)
 			{
 				if (Menu.Item("draw").GetValue<bool>())
 				{
 					Drawing.DrawCircle(target.Position, 50f, System.Drawing.Color.Red);
 				}
-				
+					
 				if (target.IsValidTarget(range) && SmiteSlot.CanCast(target))
 				{
-					SmiteSlot.Slot = smiteSlot;
-					Player.Spellbook.CastSpell(smiteSlot, target);
+					if(Menu.Item("onlySmiteInCombo").GetValue<bool>() && Orbwalker.ActiveMode.ToString() == "Combo"){
+						SmiteSlot.Slot = smiteSlot;
+						Player.Spellbook.CastSpell(smiteSlot, target);
+					}
+					else if(!Menu.Item("onlySmiteInCombo").GetValue<bool>()){
+						SmiteSlot.Slot = smiteSlot;
+						Player.Spellbook.CastSpell(smiteSlot, target);
+					}
 				}
 				else
 					return;
