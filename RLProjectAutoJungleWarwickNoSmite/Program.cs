@@ -4,7 +4,6 @@ using System.Linq;
 using SharpDX;
 using LeagueSharp;
 using LeagueSharp.Common;
-using LSConsole = LeagueSharp.Console.Console;
 
 
 namespace RLProjectJunglePlay
