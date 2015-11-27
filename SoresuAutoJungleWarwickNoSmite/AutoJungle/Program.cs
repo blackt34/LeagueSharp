@@ -1113,7 +1113,7 @@ namespace AutoJungle
                 return;
             }
             Jungle.setSmiteSlot();
-            if (Jungle.smiteSlot == SpellSlot.Unknown)
+            /*if (Jungle.smiteSlot == SpellSlot.Unknown)
             {
                 Console.WriteLine("Items: ");
                 foreach (var i in player.InventoryItems)
@@ -1122,7 +1122,7 @@ namespace AutoJungle
                 }
                 Game.PrintChat("You don't have smite!");
                 return;
-            }
+            }*/
 
             ItemHandler = new ItemHandler(_GameInfo.Champdata.Type);
             CreateMenu();
