@@ -43,7 +43,7 @@ namespace SmiteEnemy
             Menu = new Menu("SmiteEmemy", "SmiteEmemy", true);
             Menu.AddItem(new MenuItem("smite", "Smite!").SetValue(new KeyBind("Y".ToCharArray()[0], KeyBindType.Toggle, true)));
 			Menu.AddItem(new MenuItem("onlySmiteInCombo", "Only Simte in Combo").SetValue(false));
-			Menu.AddItem(new MenuItem("draw", "Draw").SetValue(true));
+			Menu.AddItem(new MenuItem("draw", "Draw").SetValue(false));
             Menu.AddToMainMenu();
 
             //Targetsleector
