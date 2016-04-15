@@ -48,8 +48,8 @@ namespace Mastery_Badge_Spammer
                 new MenuItem("chatdisrespectmode", "Chat Disrespect Mode").SetValue(
                     new StringList(new[] {"DISABLED", "CHAMPION NAME", "SUMMONER NAME"})));
             Menu.AddItem(new MenuItem("emotehotkey", "Emote Hot Key")).SetValue(new KeyBind('N', KeyBindType.Press));
-			Menu.AddItem(new MenuItem("eminsec", "Min Emote per second")).SetValue(new Slider(500, 100, 5000));
-			Menu.AddItem(new MenuItem("emaxsec", "Max Emote per second")).SetValue(new Slider(1500, 500, 15000));
+			Menu.AddItem(new MenuItem("eminsec", "Min Emote interval")).SetValue(new Slider(500, 100, 5000));
+			Menu.AddItem(new MenuItem("emaxsec", "Max Emote interval")).SetValue(new Slider(1500, 500, 15000));
 			Menu.AddItem(new MenuItem("onkill", "After Kill").SetValue(true));
             Menu.AddItem(new MenuItem("onassist", "After Assist").SetValue(true));
             Menu.AddItem(new MenuItem("ondeath", "After Death").SetValue(false));
