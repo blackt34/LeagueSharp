@@ -5,11 +5,11 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("Mastery Badge Spammer Copy")]
-[assembly: AssemblyDescription("modify 'Mastery Badge Spammer' by blackt34, add more emote for fun")]
+[assembly: AssemblyTitle("MasteryEmoteSpammer-Copy")]
+[assembly: AssemblyDescription("modify 'Mastery Badge Spammer' by blackt34, add more emote for fun. Credits imsosharp")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("Mastery Badge Spammer")]
+[assembly: AssemblyProduct("MasteryEmoteSpammer-Copy")]
 [assembly: AssemblyCopyright("Copyright ©  2015")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
